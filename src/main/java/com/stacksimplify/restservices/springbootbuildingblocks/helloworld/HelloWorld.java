@@ -18,6 +18,7 @@ public class HelloWorld {
 	//userDetails
 	@GetMapping("/hello-bean")
 	public UserDetails userDetails() {
+		// This will return a JSON object
 		return new UserDetails("Mansour", "Malloum", "YDE 2");
 	}
 }
