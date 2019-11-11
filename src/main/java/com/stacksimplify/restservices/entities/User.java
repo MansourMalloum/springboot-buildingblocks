@@ -9,13 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.ResourceSupport;
+
 @Entity
 @Table(name="user")
-public class User {
+public class User extends ResourceSupport{
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long userId;
 	
 	@Column(name="USER_NAME", length =50 , nullable = false , unique = true)
 	private String username;
@@ -43,21 +45,37 @@ public class User {
 	public User() {
 	}
 
-	public User(String username, String firstname, String lastname, String email, String role, String ssn) {
+
+
+	public Long getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+
+
+	public User(Long userId, String username, String firstname, String lastname, String email, String role, String ssn,
+			List<Order> orders) {
+		super();
+		this.userId = userId;
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+		this.orders = orders;
 	}
 
-	public Long getId() {
-		return id;
-	}
+
 
 	public void setId(Long id) {
-		this.id = id;
+		this.userId = id;
 	}
 
 	public String getUsername() {
@@ -117,11 +135,14 @@ public class User {
 		this.orders = orders;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+		return "User [userId=" + userId + ", username=" + username + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", email=" + email + ", role=" + role + ", ssn=" + ssn + ", orders=" + orders + "]";
 	}
+
 
 		
 	
