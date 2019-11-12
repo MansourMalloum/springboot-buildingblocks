@@ -11,32 +11,45 @@ import javax.persistence.Table;
 
 import org.springframework.hateoas.ResourceSupport;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name="user")
+//@JsonFilter(value = "userFieldFiltered")
 public class User extends ResourceSupport{
 	
 	@Id
 	@GeneratedValue
+	@JsonView(Views.External.class)
 	private Long userId;
 	
+	@JsonView(Views.External.class)
 	@Column(name="USER_NAME", length =50 , nullable = false , unique = true)
 	private String username;
 	
+	@JsonView(Views.External.class)
 	@Column(name="FIRST_NAME", length=50, nullable = false)
 	private String firstname;
 	
+	@JsonView(Views.External.class)
 	@Column(name="LAST_NAME", length =50, nullable = false)
 	private String lastname;
 	
+	@JsonView(Views.External.class)
 	@Column(name="EMAIL_ADDRESS", length=50, nullable = false )
 	private String email;
 	
+	@JsonView(Views.Internal.class)
 	@Column(name="ROLE", length=50, nullable = false )
 	private String role;
 	
+	@JsonView(Views.Internal.class)
 	@Column(name="SSN", length=50, nullable = false )
+	@JsonIgnore
 	private String ssn;
 	
+	@JsonView(Views.Internal.class)
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders;
 

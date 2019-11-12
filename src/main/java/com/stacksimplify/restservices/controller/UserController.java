@@ -17,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 import com.stacksimplify.restservices.entities.User;
 import com.stacksimplify.restservices.exceptions.UserExistExecption;
 import com.stacksimplify.restservices.exceptions.UserNotFoundException;
-import com.stacksimplify.restservices.repositories.UserRepository;
 import com.stacksimplify.restservices.services.UserService;
 
 @RestController
